@@ -65,12 +65,22 @@ public class ListGraphExample {
         }
     }
 
-    public void graphTraversalDFS(ArrayList<ArrayList<Integer>> graph, int node) {
+    public void DFS(ArrayList<ArrayList<Integer>> graph, int node) {
         mVisited.add(node);
         System.out.println(node);
         for(int i = 0; i < graph.get(node).size(); i++) {
             if(!mVisited.contains(graph.get(node).get(i))) {
-                graphTraversalDFS(graph, graph.get(node).get(i));
+                DFS(graph, graph.get(node).get(i));
+            }
+        }
+    }
+
+    public void graphTraversalDFS(ArrayList<ArrayList<Integer>> graph, int node) {
+        DFS(graph, node);
+        
+        for( int i = 1; i < graph.size(); i++ ) {
+            if(!mVisited.contains(i)) {
+                DFS(graph, i);
             }
         }
     }
