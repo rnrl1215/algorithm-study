@@ -13,7 +13,7 @@ public class GraphTest {
         listGraph.addVertex(4,5);
         listGraph.printGraph();
 
-        listGraph.graphTraversalBFS(listGraph.getGraph(),1);
+        //listGraph.graphTraversalBFS(listGraph.getGraph(),1);
         listGraph.graphTraversalDFS(listGraph.getGraph(),1);
     }
 }
