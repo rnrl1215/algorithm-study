@@ -1,26 +1,31 @@
 package algorithm.dag;
 
 import java.util.ArrayList;
+import java.util.Deque;
+import java.util.Stack;
+
 
 public class DagGraph {
     private boolean []visit;
 
-    public void dfsts(int v, ArrayList<ArrayList<Integer>> graph, ArrayList<Integer> list)
+    public void dfsts(int v, ArrayList<ArrayList<Integer>> graph,  Deque<Integer> queue)
     {
 
         visit[v] = true;
-        list.add(v);
+
         for(int i = 0; i < graph.get(v).size(); i++)
         {
             if (visit[graph.get(v).get(i)] == false) {
-                System.out.println(graph.get(v).get(i));
-                dfsts(graph.get(v).get(i), graph, list);
+                dfsts(graph.get(v).get(i), graph, queue);
             }
         }
+
+        queue.addFirst(v);
     }
 
-    public void topologicalSort2(ArrayList<ArrayList<Integer>> graph, ArrayList<Integer> list )
+    public void topologicalSort2(ArrayList<ArrayList<Integer>> graph, Deque<Integer> deque )
     {
+
         for (int i = 1; i < graph.size(); i++)
         {
             visit[i] = false;
@@ -29,7 +34,7 @@ public class DagGraph {
         ArrayList<Integer> mList;
         for(int i = 1; i < graph.size(); i++) {
             if (visit[i] == false) {
-                dfsts(i, graph, list);
+                dfsts(i, graph, deque);
             }
         }
     }
