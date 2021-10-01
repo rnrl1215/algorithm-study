@@ -8,16 +8,17 @@ public class DijkstraTest {
             Dijkstra dijkstra = new Dijkstra(5);
             dijkstra.addNode(0, 1, 10);
             dijkstra.addNode(0, 2, 5);
-            dijkstra.addNode(1, 2, 3);
+            dijkstra.addNode(1, 2, 2);
             dijkstra.addNode(1, 3, 1);
-            dijkstra.addNode(2, 1, 2);
+            dijkstra.addNode(2, 1, 3);
             dijkstra.addNode(2, 3, 9);
             dijkstra.addNode(2, 4, 2);
             dijkstra.addNode(3, 4, 4);
             dijkstra.addNode(4, 3, 6);
 
             dijkstra.runDijkstra(0);
-
+            dijkstra.printDistance();
+            System.out.println("END");
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }

@@ -48,6 +48,7 @@ public class Dijkstra {
             int currentNode = findMinDistance();
             if(!visit[currentNode]) {
                 visit[currentNode] = true;
+                visitCount++;
                 for(Node node : graph.get(currentNode)) {
                     relax(currentNode, node.index, node.weight);
                 }
@@ -61,6 +62,13 @@ public class Dijkstra {
         }
         if(dist[v] > dist[u]+w) {                  // delta 값 업데이트
             dist[v] = dist[u]+w;
+        }
+    }
+
+
+    public void printDistance() {
+        for(int i = 0; i <dist.length; i++) {
+            System.out.println("delta of node("+i+") is "+dist[i]);
         }
     }
 
