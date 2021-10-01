@@ -4,7 +4,6 @@ public class DijkstraTest {
     public static void main(String[] args) {
 
         try {
-
             Dijkstra dijkstra = new Dijkstra(5);
             dijkstra.addNode(0, 1, 10);
             dijkstra.addNode(0, 2, 5);
