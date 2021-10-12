@@ -9,6 +9,8 @@ public class Run implements Comparable<Run> {
     private Run leftChild;
     private Run rightChild;
 
+    private Run rightRun;
+
     public int codeword;
     public int codewordLen;
 
@@ -64,6 +66,29 @@ public class Run implements Comparable<Run> {
         this.freq = this.freq+1;
     }
 
+    public int getCodeword() {
+        return codeword;
+    }
+
+    public void setCodeword(int codeword) {
+        this.codeword = codeword;
+    }
+
+    public int getCodewordLen() {
+        return codewordLen;
+    }
+
+    public void setCodewordLen(int codewordLen) {
+        this.codewordLen = codewordLen;
+    }
+
+    public Run getRightRun() {
+        return rightRun;
+    }
+
+    public void setRightRun(Run rightRun) {
+        this.rightRun = rightRun;
+    }
 
     @Override
     public boolean equals(Object o) {

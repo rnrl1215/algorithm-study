@@ -4,12 +4,19 @@ import java.io.EOFException;
 import java.io.IOException;
 import java.io.RandomAccessFile;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 
 public class Huffman {
     private ArrayList<Run> runs = new ArrayList<>();
     private Run root = null;
     private MinHeap minHeap = new MinHeap();
+
+    // 기존 저장했던 run을 간편하게 조회하기 위한 배열
+    // 기존에서는 run 들이 tree 로 되어 있어서 그냥 쓰기에는 불편하다.
+    private Run []chars = new Run[256];
+    private int charsSize = 0;
+
 
     public Run getRoot() {
         return root;
@@ -119,21 +126,72 @@ public class Huffman {
         preOrder(run.getRightChild(), depth+1);
     }
 
+    private void assignCodewords(Run p, int codeword, int length) {
+        if(p.getLeftChild() == null && p.getLeftChild() == null) {
+            p.setCodeword(codeword);
+            p.setCodewordLen(length);
+        } else {
+            assignCodewords(p.getLeftChild(), ((codeword << 1) | 0), length+1);
+            assignCodewords(p.getRightChild(), ((codeword << 1) | 1), length+1);
+        }
+    }
+
+    private void insertToArray(Run p) {
+        boolean isExistRun = false;
+        int index = -1;
+
+        for(int i = 0; i < charsSize; i++) {
+            if (chars[i].getSymbol() == p.getSymbol()) {
+                isExistRun = true;
+                index = i;
+                break;
+            }
+        }
+
+        if (isExistRun) {
+            Run run = chars[index];
+            while (true) {
+                Run preRun = run;
+                run = run.getRightRun();
+                if(run == null) {
+                    preRun.setRightRun(p);
+                    break;
+                }
+            }
+        } else {
+            chars[charsSize++] = p;
+        }
+    }
+    
+    private void storeRunsIntoArray(Run p) {
+        if (p.getLeftChild() == null && p.getRightChild() == null) {
+            insertToArray(p);
+        } else {
+            storeRunsIntoArray(p.getLeftChild());
+            storeRunsIntoArray(p.getRightChild());
+        }
+    }
+
+    public void compressFile(RandomAccessFile fin) {
+        try {
+            collectRuns(fin);
+            printRuns();
+            System.out.println("=================Create Huffman===================");
+            createHuffmanTree();
+            preOrder(root, 0);
+            assignCodewords(root, 0,0);
+            storeRunsIntoArray(root);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
     public static void main(String[] args) {
         Huffman huffman = new Huffman();
         RandomAccessFile fin;
         try {
             fin = new RandomAccessFile("/home/skahn/work/sample.txt","r");
-            huffman.collectRuns(fin);
-            huffman.printRuns();
-            System.out.println("=================Create Huffman===================");
-            huffman.createHuffmanTree();
-            huffman.preOrder(huffman.root, 0);
-
-            int test  = 0;
-            test += '1';
-            test += '0';
-            System.out.println(test);
+            huffman.compressFile(fin);
             fin.close();
         } catch (IOException e) {
             System.out.println(e.getMessage());
