@@ -5,19 +5,27 @@ import java.util.Objects;
 public class Run implements Comparable<Run> {
     public byte symbol;
     public int runLength;
-    public int freq = 1;
+    public int freq;
+
     private Run leftChild;
     private Run rightChild;
-
     private Run rightRun;
 
-    public int codeword;
-    public int codewordLen;
+    private int codeword;
+    private int codewordLen;
 
     public Run(Byte symbol, int runLength) {
         this.symbol = symbol;
         this.runLength = runLength;
+        this.freq = 1;
     }
+
+    public Run(Byte symbol, int runLength, int freq) {
+        this.symbol = symbol;
+        this.runLength = runLength;
+        this.freq = freq;
+    }
+
 
     public Run() {
     }
@@ -25,39 +33,30 @@ public class Run implements Comparable<Run> {
     public void setLeftChild(Run leftChild) {
         this.leftChild = leftChild;
     }
-
     public void setRightChild(Run rightChild) {
         this.rightChild = rightChild;
     }
-
     public byte getSymbol() {
         return symbol;
     }
-
     public void setSymbol(byte symbol) {
         this.symbol = symbol;
     }
-
     public int getRunLength() {
         return runLength;
     }
-
     public void setRunLength(int runLength) {
         this.runLength = runLength;
     }
-
     public int getFreq() {
         return freq;
     }
-
     public void setFreq(int freq) {
         this.freq = freq;
     }
-
     public Run getLeftChild() {
         return leftChild;
     }
-
     public Run getRightChild() {
         return rightChild;
     }
@@ -101,15 +100,14 @@ public class Run implements Comparable<Run> {
     @Override
     public int hashCode() {
         return Objects.hash(symbol, runLength);
-
     }
 
     @Override
     public int compareTo(Run o) {
-        if(this.getFreq() != o.getFreq()) {
-            return o.getFreq() - this.getFreq();
+        if (o.getFreq() == this.getFreq()) {
+            return this.getSymbol() - o.getSymbol();
         } else {
-            return  o.getSymbol() - this.getSymbol();
+            return o.getFreq() - this.getFreq();
         }
     }
 }

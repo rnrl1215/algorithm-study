@@ -53,7 +53,20 @@ public class MinHeap {
         }
     }
 
+    public Run getMinRun() {
+        if (list.size() > 0) {
+            Run run = list.get(0);
+            return run;
+        } else {
+            return null;
+        }
+    }
+
     public int size() {
         return list.size();
+    }
+
+    public void clear() {
+        list.clear();
     }
 }
