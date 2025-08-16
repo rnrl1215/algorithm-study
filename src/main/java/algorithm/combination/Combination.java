@@ -25,4 +25,25 @@ public class Combination {
             solve(arr, n, r, index, target + 1, comb);
         }
     }
+
+
+    static int[] arr = {1,2,3,5,6};
+    static int n = arr.length;
+    static int r = 3;
+    static int[] result = new int[r];
+
+    public static void combine(int idx, int start) {
+        if (idx == r) {
+            for (int i = 0; i< r; i++) {
+                int i1 = result[i];
+                System.out.println("i1: " + i1);
+            }
+            return;
+        }
+
+        for(int i = start; i < n; i++) {
+            result[idx] = arr[i];
+            combine(idx+1, i+1);
+        }
+    }
 }

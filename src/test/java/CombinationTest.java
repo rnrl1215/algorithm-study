@@ -1,4 +1,5 @@
 import algorithm.combination.Combination;
+import org.junit.jupiter.api.Test;
 
 public class CombinationTest {
     public static void main(String[] args) {
@@ -13,4 +14,8 @@ public class CombinationTest {
         combination.solve(arr, 5, 3, 0, 0, comb);
     }
 
+    @Test
+    public void test() {
+        Combination.combine(0,0);
+    }
 }
