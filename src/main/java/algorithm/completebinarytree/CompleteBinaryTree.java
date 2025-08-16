@@ -21,18 +21,19 @@ public class CompleteBinaryTree {
         if(rootNode == null) {
             rootNode = new Node(data);
             queue.add(rootNode);
+            return;
         }
 
         while (true) {
             Node tmpNode = queue.peek();
             if(tmpNode.leftNode == null) {
                 tmpNode.leftNode = new Node(data);
-                queue.add(tmpNode);
+                queue.add(tmpNode.leftNode );
                 break;
             } else if(tmpNode.RightNode == null) {
                 tmpNode.RightNode = new Node(data);
+                queue.add(tmpNode.RightNode);
                 queue.remove();
-                queue.add(tmpNode);
                 break;
             } else {
                 queue.remove();
