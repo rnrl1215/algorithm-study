@@ -1,9 +1,15 @@
 package algorithm.completebinarytree;
 
-import java.util.LinkedList;
-import java.util.Queue;
+import java.util.*;
 
 public class CompleteBinaryTree {
+    private Set<Integer> learnedSkills = new HashSet<>();
+    private Map<String, String> a = new TreeMap<>();
+    private List<Integer> a1 = new ArrayList<>();
+
+    public void test() {
+
+    }
 
     class Node {
         public Node(char data) {

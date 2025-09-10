@@ -8,13 +8,20 @@ class CompleteBinaryTreeTest {
 
     @Test
     void test() {
-        CompleteBinaryTree completeBinaryTree = new CompleteBinaryTree();
-        completeBinaryTree.insertNode('A');
-        completeBinaryTree.insertNode('B');
-        completeBinaryTree.insertNode('C');
-        completeBinaryTree.insertNode('D');
-        completeBinaryTree.insertNode('E');
-        completeBinaryTree.insertNode('F');
-        completeBinaryTree.preOrder(completeBinaryTree.getRootNode());
+//        CompleteBinaryTree completeBinaryTree = new CompleteBinaryTree();
+//        completeBinaryTree.insertNode('A');
+//        completeBinaryTree.insertNode('B');
+//        completeBinaryTree.insertNode('C');
+//        completeBinaryTree.insertNode('D');
+//        completeBinaryTree.insertNode('E');
+//        completeBinaryTree.insertNode('F');
+//        completeBinaryTree.preOrder(completeBinaryTree.getRootNode());
+
+
+        int number = 10;
+
+        int i = 9/2;
+        int mod = 9%2;
+
     }
 }
