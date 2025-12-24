@@ -22,8 +22,9 @@ public class remote {
 
             for (int move : moves) {
                 int next = value + move;
-                if (!visited.contains(next)) {
+                if (!visited.contains(Optional.of(next))) {
                     queue.add(new int[]{next, depth+1});
+                    visited.add(Integer.valueOf(next));
                 }
             }
         }

@@ -92,4 +92,49 @@ public class ListGraphExample {
         mVisited.clear();
     }
 
+
+
+    public static void test2() {
+        int graphSize = 4;
+        ArrayList<ArrayList<Integer>> graph = new ArrayList<>();
+        for (int i = 0; i < 10; i++) {
+            graph.add(new ArrayList<>());
+        }
+
+
+        graph.get(1).add(2);
+        graph.get(2).add(1);
+
+        graph.get(2).add(4);
+        graph.get(4).add(1);
+    }
+
+
+    int [][] graph = new int[4+1][4+1];
+
+    void init() {
+        graph[1][2] = 1;
+        graph[2][1] = 1;
+
+        graph[1][3] = 1;
+        graph[3][1] = 1;
+
+        graph[2][4] = 1;
+        graph[4][2] = 1;
+        boolean [] visited = new boolean[graph.length];
+        dfs(graph, visited, 1);
+    }
+
+    void dfs(int [][] graph, boolean []visited, int node) {
+        visited[node] = true;
+        System.out.print(node + " ");
+
+        for (int i = 0; i < graph.length; i++) {
+            if(graph[node][i] == 1 && visited[i] == false) {
+                dfs(graph, visited, i);
+            }
+        }
+    }
 }
+
+
