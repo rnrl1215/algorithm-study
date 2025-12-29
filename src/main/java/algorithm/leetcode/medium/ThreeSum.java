@@ -5,6 +5,15 @@ import java.util.Arrays;
 import java.util.List;
 
 public class ThreeSum {
+
+
+//    Given an integer array nums of length n and an integer target, find three integers in nums such that the sum is closest to target.
+//
+//    Return the sum of the three integers.
+//
+//    You may assume that each input would have exactly one solution.
+//
+
     public List<List<Integer>> threeSum(int[] nums) {
         List<List<Integer>> result = new ArrayList<>();
         Arrays.sort(nums);
